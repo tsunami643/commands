@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="https://howdoiplay.com/assets/media/icons/favicon.ico">
+<title>tsunami_bot commands</title>
+<style>
+body {
+	background: #16171b;
+	font-family: Inter var,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+	font-size: 21px;
+	margin: 0px;
+	color: white;
+}
+
+a {
+	color: #6fc2e0;
+	text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+@font-face {
+  font-family: 'Radiance-Bold';
+  src: url(https://chatwheel.howdoiplay.com/assets/fonts/radiance-bold.ttf);
+}
+
+#content {
+	width: 100%;
+}
+
+#header {
+	margin-left: auto;
+    margin-right: auto;
+	text-align: center;
+	padding: 30px 0;
+	color: #ED3B1C;
+	font-family: Radiance-Bold;
+}
+
+#commandContainer {
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto 50px;
+	width: 50%;
+}
+
+.command {
+	background: #1f2025;
+	display: flex;
+	flex-direction: column;
+	padding: 25px;
+	margin-bottom: 1px;
+}
+
+.topLine {
+	display: block;
+	margin-bottom: 5px;
+	word-wrap: break-word;
+}
+
+.nameContainer {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.hyphen {
+	margin: 0 5px;
+}
+
+.descriptionContainer {
+	font-size: 18px;
+}
+
+.bottomLine {
+	display: block;
+	margin-top: 5px;
+}
+
+.aliasContainer {
+	display: block;
+	font-size: 14px;
+}
+
+.alias {
+	display: inline-block;
+	padding: 3px 9px;
+	margin: 2px 4px 2px 0;
+	border-radius: 0.25rem;
+	background-color: #3d404b;
+}
+
+h1 {
+	font-size: 72px;
+    letter-spacing: 8px;
+    font-weight: normal;
+	margin: auto;
+}
+
+@media screen and (max-width : 700px)
+{
+	h1 {
+	  font-size: 30px;
+	}
+	#commandContainer {
+	  width: 100%;
+	  margin: 0 auto;
+	}
+}
+</style>
+</head>
+<body>
+<div id="content">
+<div id="header" class="inner">
+			<h1>tsunami_bot commands</h1>
+</div>
+<div id="commandContainer"></div>
+</div>
+<script>
+var commandsList = [
+        {
+            name: "!chatwheel",
+            aliases: [
+                "!voicelines",
+                "!voiceline",
+                "!lines",
+                "!dotaplus"
+            ],
+            description: "<a href='https://chatwheel.howdoiplay.com/'>chatwheel.howdoiplay.com</a>"
+        },
+        {
+            name: "!vods",
+            aliases: [
+                "!vod",
+                "!archive"
+            ],
+            description: "<a href='https://howdoiplay.com/vods'>howdoiplay.com/vods</a>"
+        },
+        {
+            name: "!playlist",
+            aliases: [
+                "!spotify",
+            ],
+            description: "tsunami's probably listening to this synthwave playlist: <a href='https://open.spotify.com/playlist/5GBJpEiKMiFy3cBPKR2TaH'>open.spotify.com/playlist/5GBJpEiKMiFy3cBPKR2TaH</a>"
+        },
+        {
+            name: "!backlog",
+            aliases: [
+                "!games",
+                "!hltb"
+            ],
+            description: "<a href='https://howlongtobeat.com/user/nealk/games/backlog'>howlongtobeat.com/user/nealk/games/backlog</a>"
+        },
+        {
+            name: "!completed",
+            aliases: [
+                "!beaten",
+                "!finished"
+            ],
+            description: "<a href='https://howlongtobeat.com/user/nealk/games/completed'>howlongtobeat.com/user/nealk/games/completed</a>"
+        },
+        {
+            name: "!merch",
+            aliases: [
+                "!shop",
+                "!store",
+				"!shirts"
+            ],
+            description: "tsunami's merch store: <a href='https://shop.howdoiplay.com'>shop.howdoiplay.com</a>"
+        },
+        {
+            name: "!site",
+            aliases: [
+                "!website",
+                "!howdoiplay",
+				"!tips"
+            ],
+            description: "<a href='https://howdoiplay.com'>howdoiplay.com</a> is tsunami's Dota Tips and Counters site"
+        },
+        {
+            name: "!stats",
+            aliases: [
+                "!spectral"
+            ],
+            description: "The stats site tsunami's using is: <a href='https://stats.spectral.gg'>stats.spectral.gg</a>"
+        },
+        {
+            name: "!demo",
+            aliases: [
+                "!terrain"
+            ],
+            description: "You can demo mode on the full map by demoing terrains"
+        },
+		{
+            name: "!timescale",
+            aliases: [
+            ],
+            description: "<font face = 'Courier New'>host_timescale</font> in demo mode. The number controls what % game speed. <font face = 'Courier New'>host_timescale 0.2</font> is 20% speed, <font face = 'Courier New'>host_timescale 1</font> is normal speed, and <font face = 'Courier New'>host_timescale 5</font> is 500% speed"
+        },
+		{
+            name: "!teleport",
+            aliases: [
+            ],
+            description: "In console type <font face = 'Courier New'>bind KEY dota_dev hero_teleport</font> and assign it to whatever hotkey you want. Only works in demo mode or in a local server with <font face = 'Courier New'>sv_cheats true</font>"
+        },
+        {
+            name: "!background",
+            aliases: [
+                "!ethnicity",
+                "!nationality",
+				"!race",
+				"!language"
+            ],
+            description: "tsunami was born and raised in Texas, but his parents are from India. He understands Gujarati, but speaks it at like a 3rd grade level"
+        },
+        {
+            name: "!offlane",
+            aliases: [
+            ],
+            description: "<i>When will tsunami make Be the Better Offlane?</i>"
+        },
+        {
+            name: "!DoesTsunamiDoViewerGames",
+            aliases: [
+				"!DoesTsunamiDoSubGames",
+				"!subgames"
+            ],
+            description: "<i>Does he?</i>"
+        },
+        {
+            name: "!chat",
+            aliases: [
+				"!readchat"
+            ],
+            description: "<i>For when you're feeling ignored in chat</i>"
+        },
+		{
+            name: "!song",
+            aliases: [
+                "!currentsong",
+                "!currenttrack",
+				"!music",
+				"!nowplaying"
+            ],
+            description: "<i>Responds with the current song playing</i>"
+        }
+]
+</script>
+<script>
+for(var i=0;i<commandsList.length;i++){
+	const el = document.querySelector("#commandContainer");
+	
+	commandDiv = document.createElement('div'),
+	commandDiv.setAttribute("class", "command");
+	
+	topLine = document.createElement('div');
+	topLine.setAttribute("class", "topLine");
+	bottomLine = document.createElement('div');
+	bottomLine.setAttribute("class", "bottomLine");
+	
+	nameContainer = document.createElement('span'),
+	nameContainer.setAttribute("class", "nameContainer"),
+	nameContainer.innerHTML = commandsList[i].name,
+	topLine.appendChild(nameContainer);
+	
+	hyphen = document.createElement('span'),
+	hyphen.setAttribute("class", "hyphen"),
+	hyphen.innerHTML = "-",
+	topLine.appendChild(hyphen);
+	
+	descriptionContainer = document.createElement('span'),
+	descriptionContainer.setAttribute("class", "descriptionContainer"),
+	descriptionContainer.innerHTML = commandsList[i].description,
+	topLine.appendChild(descriptionContainer);
+	
+	commandDiv.appendChild(topLine);
+	
+	aliasContainer = document.createElement('div'),
+	aliasContainer.setAttribute("class", "aliasContainer");
+	alias = document.createElement('span'),
+	alias.setAttribute("class", "alias"),
+	alias.innerHTML = commandsList[i].name,
+	aliasContainer.appendChild(alias);
+	commandsList[i].aliases.forEach(element => 
+		(alias = document.createElement('span'),
+		alias.setAttribute("class", "alias"),
+		alias.innerHTML = element,
+		aliasContainer.appendChild(alias))
+	);
+	bottomLine.appendChild(aliasContainer);
+	
+	commandDiv.appendChild(bottomLine);
+	
+	el.appendChild(commandDiv);
+}
+</script>
+</body>
+</html>
